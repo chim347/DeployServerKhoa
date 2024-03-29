@@ -9,10 +9,12 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
-                      });
+        builder =>
+        {
+            builder.WithOrigins("https://localhost:7116", "http://localhost:5033")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
 });
 // Add services to the container.
 builder.Services.AddRazorPages();
