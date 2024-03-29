@@ -11,9 +11,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
         builder =>
         {
-            builder.WithOrigins("https://localhost:7116", "http://localhost:5033")
-                                .AllowAnyHeader()
-                                .AllowAnyMethod();
+            builder.WithOrigins("https://api-6969.ministore.tech/swagger/index.html", "http://localhost:5033")
+                    .WithMethods("PUT", "DELETE", "GET", "POST").AllowAnyHeader();
         });
 });
 // Add services to the container.
