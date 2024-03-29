@@ -6,15 +6,13 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-        builder =>
-        {
-            builder.WithOrigins("https://api-6969.ministore.tech/swagger/index.html", "http://localhost:5033")
-                    .WithMethods("PUT", "DELETE", "GET", "POST").AllowAnyHeader();
-        });
-});
+builder.Services.AddCors(o => o.AddPolicy(MyAllowSpecificOrigins,
+                      builder =>
+                      {
+                          builder.AllowAnyOrigin()
+                                 .AllowAnyMethod()
+                                 .AllowAnyHeader();
+                      }));
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddApplicationServices();
